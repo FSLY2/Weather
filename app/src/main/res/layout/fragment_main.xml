@@ -10,43 +10,37 @@
         android:id="@+id/tvTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="50dp"
-        android:text="23"
+        android:text="@string/tvTemp"
         android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintStart_toEndOf="@+id/tvTempTittle"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="23" />
-
-    <TextView
-        android:id="@+id/tvTempTittle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="Температура:"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tvCityNameTitle"
+        tools:text="23" />
 
     <EditText
         android:id="@+id/etCityName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Enter city Name"
+        android:hint="@string/hintEtName"
+        android:autofillHints="name"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
 
-    <Button
-        android:id="@+id/bSearch"
+    <TextView
+        android:id="@+id/tvCityNameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search"
+        android:layout_marginTop="30dp"
+        android:text="@string/tvCityTitle"
+        android:textColor="@color/black"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etCityName" />

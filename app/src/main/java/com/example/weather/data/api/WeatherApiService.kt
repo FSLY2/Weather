@@ -7,12 +7,17 @@ import retrofit2.http.Query
 
 interface WeatherApiService {
 
-    @GET("data/2.5/weather?")
+    @GET("forecast.json?")
     fun getWeatherForecast(
-        @Query("lat") lat: Double,
-        @Query("lon") lon: Double,
-        @Query("lang") lang: String = "ua",
-        @Query("units") units: String = "metric",
-        @Query("appid") appid: String = "1e4e4eadb5798888ace488f9d3fd6323"
-    ) : Observable<WeatherDataModel>
+        @Query("q") q: String,
+        @Query("days") days: Int = DAYS_COUNT,
+        @Query("aqi") aqi: String = "yes",
+        @Query("lang") lang: String = "uk",
+        @Query("key") key: String = API_KEY
+    ): Observable<WeatherDataModel>
+
+    companion object {
+        private const val DAYS_COUNT = 5
+        private const val API_KEY = "00790a7494ae46f5a87115158230504"
+    }
 }
