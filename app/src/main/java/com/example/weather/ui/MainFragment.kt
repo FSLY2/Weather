@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.weather.databinding.FragmentMainBinding
@@ -30,16 +31,21 @@ class MainFragment : Fragment() {
         searchCity()
 
         viewModel.getWeatherLiveData().observe(viewLifecycleOwner) { weatherDataModel ->
-            val temp = weatherDataModel.main.temp
+            val temp = weatherDataModel.current.temp_c
 
             binding.tvTemp.text = temp.toString()
         }
     }
 
     private fun searchCity() {
-        binding.bSearch.setOnClickListener {
-            val cityName = binding.etCityName.text.toString()
-            viewModel.getWeatherForecast(cityName)
+        binding.etCityName.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                val cityName = binding.etCityName.text.toString()
+                viewModel.getWeatherForecast(cityName)
+                true
+            } else {
+                false
+            }
         }
     }
 }
