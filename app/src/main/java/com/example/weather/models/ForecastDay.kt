@@ -1,6 +1,6 @@
 package com.example.weather.models
 
-data class Forecastday(
+data class ForecastDay(
     val astro: Astro,
     val date: String,
     val date_epoch: Int,
