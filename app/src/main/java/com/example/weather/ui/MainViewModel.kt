@@ -18,7 +18,9 @@ import javax.inject.Inject
 class MainViewModel
 @Inject constructor(private val repository: MainRepository) : ViewModel() {
 
-    private val weatherLiveData = MutableLiveData<WeatherDataModel>()
+    private var _weatherLiveData = MutableLiveData<WeatherDataModel>()
+    val weatherLiveData: LiveData<WeatherDataModel>
+        get() = _weatherLiveData
 
     fun getWeatherForecast(cityName: String) {
         getWeatherData(cityName)
@@ -43,7 +45,7 @@ class MainViewModel
                 override fun onNext(weatherData: WeatherDataModel) {
                     val temperature = weatherData.current.temp_c
                     Log.d("MainViewModel", "onNext: Temperature is: $temperature")
-                    weatherLiveData.postValue(weatherData)
+                    _weatherLiveData.postValue(weatherData)
                 }
 
                 override fun onError(e: Throwable) {
@@ -60,9 +62,5 @@ class MainViewModel
                     )
                 }
             })
-    }
-
-    fun getWeatherLiveData(): LiveData<WeatherDataModel> {
-        return weatherLiveData
     }
 }
