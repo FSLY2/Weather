@@ -24,8 +24,6 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
         return ViewHolder(binding)
     }
 
-
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder.binding){
             itemTvHourlyTime.text = inputData[position].time_epoch.toDateFormat(HOUR_DOT_MINUTE)
