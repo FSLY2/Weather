@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 const val HOUR_DOT_MINUTE = "HH:mm"
+const val DAY_FULL_MONTH_NAME = "dd MMMM"
+const val DAY_OF_WEEK = "EEEE"
 
 fun String.provideIcon() = when(this) {
     "113" -> R.drawable.ic_113d
