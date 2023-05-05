@@ -12,7 +12,6 @@ interface WeatherApiService {
         @Query("q") q: String,
         @Query("days") days: Int = DAYS_COUNT,
         @Query("aqi") aqi: String = "yes",
-        @Query("lang") lang: String = "uk",
         @Query("key") key: String = API_KEY
     ): Observable<WeatherDataModel>
 
