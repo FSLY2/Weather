@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
+    app:cardBackgroundColor="@color/cardGray">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cardGray"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvSearchCityName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:includeFontPadding="false"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            app:fontFamily="@font/sen"
+            tools:text="Kyiv" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvSearchCountryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:includeFontPadding="false"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            app:fontFamily="@font/sen"
+            tools:text="Ukraine" />
+
+    </LinearLayout>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivNotFavoriteIcon"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center|end"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/ic_star_outline" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivFavoriteIcon"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center|end"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/ic_star_filled"
+        android:visibility="invisible" />
+
+</com.google.android.material.card.MaterialCardView>
