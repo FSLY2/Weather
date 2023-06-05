@@ -16,7 +16,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     private var inputData: List<Hour> = emptyList()
 
-    class ViewHolder(val binding: ItemHourlyBinding) : RecyclerView.ViewHolder(binding.root)
+    class ViewHolder(val bindingHolder: ItemHourlyBinding) : RecyclerView.ViewHolder(bindingHolder.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -25,7 +25,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        with(holder.binding){
+        with(holder.bindingHolder){
             itemTvHourlyTime.text = inputData[position].time_epoch.toDateFormat(HOUR_DOT_MINUTE)
 
             itemTvHourlyTemp.text = StringBuilder().append(inputData[position].temp_c.toInt())

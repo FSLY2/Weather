@@ -19,6 +19,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.location.LocationListenerCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.weather.common.DAY_FULL_MONTH_NAME
 import com.example.weather.common.DAY_OF_WEEK
@@ -66,6 +67,7 @@ class MainFragment : Fragment() {
         displayData()
         initAdapter()
         initObservers()
+        openSearchFragment()
     }
 
     private fun displayData() {
@@ -141,6 +143,13 @@ class MainFragment : Fragment() {
     private fun searchForecastForCity() {
         val city = "Kiev"
         viewModel.getWeatherForecast(city)
+    }
+
+    private fun openSearchFragment() {
+        binding.bSearch.setOnClickListener {
+            val action = MainFragmentDirections.actionMainFragmentToSearchFragment()
+            findNavController().navigate(action)
+        }
     }
 
     private fun initAdapter() {

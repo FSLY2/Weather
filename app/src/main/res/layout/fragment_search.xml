@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,89 +7,78 @@
     android:background="@color/backgroundBlack"
     tools:context=".ui.SearchFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/searchCardView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:backgroundTint="@color/cardGray"
+        app:cardCornerRadius="8dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/searchLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:hint="@string/searchLocationHint"
-            android:textColorHint="@color/lightGreen"
-            app:boxStrokeColor="@color/lightGreen"
-            app:boxStrokeErrorColor="@color/red"
-            app:endIconContentDescription="icon_search"
-            app:endIconDrawable="@drawable/ic_search"
-            app:endIconMode="custom"
-            app:endIconTint="@color/lightGreen"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:startIconContentDescription="location"
-            app:startIconDrawable="@drawable/ic_location"
-            app:startIconTint="@color/white">
+            android:background="@color/cardGray"
+            app:iconifiedByDefault="false"
+            app:queryBackground="@color/transparent"
+            app:queryHint="@string/searchLocationHint" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/searchField"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/sen"
-                android:imeOptions="actionSearch"
-                android:inputType="textCapSentences"
-                android:maxLines="1"
-                android:singleLine="true" />
+    </com.google.android.material.card.MaterialCardView>
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <FrameLayout
-            android:id="@+id/predictionsContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/bg_search_prediction_list"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/searchLayout">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvPredictions"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:itemCount="4"
-                tools:listitem="@layout/item_search" />
-
-            <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:id="@+id/loadingIcon"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:indeterminate="true"
-                android:visibility="gone"
-                app:indicatorColor="@color/lightGreen"
-                tools:visibility="visible" />
-
-        </FrameLayout>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/predictionsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_search_prediction_list"
+        app:layout_constraintBottom_toTopOf="@id/rvFavorites"
+        app:layout_constraintEnd_toEndOf="@id/searchCardView"
+        app:layout_constraintStart_toStartOf="@id/searchCardView"
+        app:layout_constraintTop_toBottomOf="@+id/searchCardView">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvFavorites"
+            android:id="@+id/rvPredictions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:background="@drawable/bg_search_favorites_list"
+            android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/predictionsContainer"
             tools:itemCount="4"
             tools:listitem="@layout/item_search" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/loadingIcon"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:indicatorColor="@color/lightGreen"
+            tools:visibility="visible" />
 
-</androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvFavorites"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/bg_search_favorites_list"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/predictionsContainer"
+        app:layout_constraintStart_toStartOf="@id/predictionsContainer"
+        app:layout_constraintTop_toBottomOf="@id/predictionsContainer"
+        tools:itemCount="4"
+        tools:listitem="@layout/item_search" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
