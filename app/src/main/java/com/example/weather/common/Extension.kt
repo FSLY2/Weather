@@ -1,5 +1,9 @@
 package com.example.weather.common
 
+import android.content.Context
+import android.widget.ImageView
+import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.example.weather.R
 import java.text.SimpleDateFormat
 import java.util.*
@@ -8,7 +12,7 @@ const val HOUR_DOT_MINUTE = "HH:mm"
 const val DAY_FULL_MONTH_NAME = "dd MMMM"
 const val DAY_OF_WEEK = "EEEE"
 
-fun String.provideIcon() = when(this) {
+fun String.provideIcon() = when (this) {
     "113" -> R.drawable.ic_113d
     "116" -> R.drawable.ic_116d
     "119", "122" -> R.drawable.ic_119d
@@ -22,6 +26,32 @@ fun String.provideIcon() = when(this) {
     "389" -> R.drawable.ic_389d
     "395" -> R.drawable.ic_395d
     else -> R.drawable.ic_error
+}
+
+fun ImageView.loadImage(icon: String) {
+    Glide.with(this)
+        .load("https:" + icon)
+        .into(this)
+}
+
+fun TextView.putTextTemp(temp: Double) {
+    this.text = StringBuilder().append(temp.toInt()).append("\u00B0")
+}
+
+fun TextView.putTextHumidity(humidity: Int) {
+    this.text = StringBuilder().append(humidity).append("%")
+}
+
+fun TextView.putTextAvgHumidity(humidity: Double) {
+    this.text = StringBuilder().append(humidity.toInt()).append("%")
+}
+
+fun TextView.putTextWind(wind: Double) {
+    this.text = StringBuilder().append(wind.toInt()).append(" kph")
+}
+
+fun TextView.putTextPressure(pressure: Double) {
+    this.text = StringBuilder().append(pressure.toInt()).append(" mmHg")
 }
 
 fun Int.toDateFormat(format: String): String {

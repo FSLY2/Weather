@@ -35,11 +35,10 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/predictionsContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="298dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/bg_search_prediction_list"
-        app:layout_constraintBottom_toTopOf="@id/rvFavorites"
         app:layout_constraintEnd_toEndOf="@id/searchCardView"
         app:layout_constraintStart_toStartOf="@id/searchCardView"
         app:layout_constraintTop_toBottomOf="@+id/searchCardView">
@@ -51,11 +50,11 @@
             android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="4"
-            tools:listitem="@layout/item_search" />
+            tools:listitem="@layout/item_search"/>
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/loadingIcon"
-            android:layout_width="match_parent"
+            android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
@@ -77,7 +76,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/predictionsContainer"
         app:layout_constraintStart_toStartOf="@id/predictionsContainer"
-        app:layout_constraintTop_toBottomOf="@id/predictionsContainer"
+        app:layout_constraintTop_toBottomOf="@+id/predictionsContainer"
         tools:itemCount="4"
         tools:listitem="@layout/item_search" />
 

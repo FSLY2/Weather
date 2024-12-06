@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.weather.data.repository.MainRepository
 import com.example.weather.models.CitiesDataModel
+import com.example.weather.models.CityAndCountry
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observer
@@ -18,9 +19,8 @@ import javax.inject.Inject
 class SearchViewModel
 @Inject constructor(private val repository: MainRepository) : ViewModel() {
 
-    private var _searchCitiesLiveData = MutableLiveData<CitiesDataModel>()
-    val searchCitiesLiveData: LiveData<CitiesDataModel>
-        get() = _searchCitiesLiveData
+    private var searchCitiesLiveData = MutableLiveData<List<CityAndCountry>>()
+    fun observeOnSearchCitiesLiveData() = searchCitiesLiveData
 
     fun getCities() {
         getCitiesData()
@@ -43,7 +43,14 @@ class SearchViewModel
                 override fun onNext(citiesData: CitiesDataModel) {
                     val test = citiesData.data[0].country
                     Log.d("SearchViewModel", "onNext: Country is: $test")
-                    _searchCitiesLiveData.postValue(citiesData)
+
+                    val result = ArrayList<CityAndCountry>()
+                    citiesData.data.forEach { country ->
+                        country.cities.forEach { city ->
+                            result.add(CityAndCountry(country.country, city))
+                        }
+                    }
+                    searchCitiesLiveData.postValue(result)
                 }
 
                 override fun onError(e: Throwable) {
