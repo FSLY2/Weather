@@ -13,5 +13,6 @@
     <color name="red">#FF0000</color>
     <color name="lightGreen">#8AFFC0</color>
     <color name="lightBlue">#51B7FF</color>
+    <color name="transparent">#00FFFFFF</color>
     <color name="mtrl_textinput_default_box_stroke_color">@color/lightGreen</color>
 </resources>
