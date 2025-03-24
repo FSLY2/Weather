@@ -1,20 +1,15 @@
 package com.example.weather.ui
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.doAfterTextChanged
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.example.weather.databinding.FragmentSearchBinding
 import com.example.weather.ui.adapters.SearchAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
@@ -42,6 +37,18 @@ class SearchFragment : Fragment() {
 
     private fun searchAndFilterCity() {
         viewModel.getCities()
+
+        // Reading the request from the search field
+        binding.searchField.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false // Ignore the send event (Enter)
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                viewModel.getPrediction(newText.orEmpty())
+                return true
+            }
+        })
     }
 
     private fun initAdapter() {

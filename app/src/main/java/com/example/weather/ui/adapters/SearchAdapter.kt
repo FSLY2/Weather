@@ -2,18 +2,14 @@ package com.example.weather.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.weather.R
 import com.example.weather.databinding.ItemSearchBinding
-import com.example.weather.models.CitiesDataModel
-import com.example.weather.models.Data
+import com.example.weather.models.CityItem
 
 class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
-    private var inputSearchData: List<Data> = emptyList()
-    private var filteredCities: MutableList<Data> = mutableListOf()
+    private var inputSearchData: List<CityItem> = emptyList()
+    private var filteredCities: MutableList<CityItem> = mutableListOf()
 
     class ViewHolder(val bindingHolder: ItemSearchBinding) :
         RecyclerView.ViewHolder(bindingHolder.root)
@@ -27,15 +23,15 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder.bindingHolder) {
             val cityData = filteredCities[position]
-            tvSearchCityName.text = cityData.cities.toString()
+            tvSearchCityName.text = cityData.city
             tvSearchCountryName.text = cityData.country
         }
     }
 
     override fun getItemCount(): Int = inputSearchData.size
 
-    fun updateList(newList: CitiesDataModel) {
-        inputSearchData = newList.data
+    fun updateList(newList: List<CityItem>) {
+        inputSearchData = newList
         filteredCities.clear()
         filteredCities.addAll(inputSearchData)
         notifyDataSetChanged()
